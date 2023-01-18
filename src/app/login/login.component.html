@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="position-absolute top-50 start-50 translate-middle">
+    <div class="" style="width: 20rem;">
+        <h1 class="Login">Login</h1>
+        <hr/>
+        <div>
+            <div class="input-group mb-3">
+                <input #username type="text" class="form-control" placeholder="Benutzername" id="username">
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Passwort" id="pw">
+            </div>
+            <button #pw type="button" class="btn btn-{{color}} mt-1 mb-3 background_button" (click)="CheckLogin()">Login</button>
+            <p>{{info}}</p>
+        </div>
+    </div>
+</div>

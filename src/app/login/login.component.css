@@ -1,0 +1,10 @@
+.background_button {
+    background-color: #202124;
+    border: none;
+    color: white;
+}
+
+.translate-middle {
+    transform: translate(-50%,-100%)!important;
+}
+

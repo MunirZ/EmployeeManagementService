@@ -1,12 +1,112 @@
-
 <div class="container">
-  <h1>Alle Mitarbeiter</h1>
-  <button>Mitarbeiter anlegen</button>
+  <div class="row m-5">
+    <div class="col">
+      <p>Alle Mitarbeiter</p>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="AddEmployees()">Mitarbeiter anlegen</button>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-sm-7">
+      <input type="text" class="form-control" placeholder="Suchbegriff">
+    </div>
+    <div class="col-sm">
+      <button type="button" class="btn btn-primary">Suchen</button>
+    </div>
+    <div class="col-sm">
+      <button type="button" class="btn btn-primary" (click)="isDropDownOpen = !isDropDownOpen">Sortierung</button>
+    </div>
+  </div>
+
+  <div *ngIf="isDropDownOpen">
+    <ul>
+      <li>
+        <input type="radio" class="btn-check" value="" id="test"> 
+        <label class="btn btn-outline-light" for="test">Test</label>
+      </li>
+      <li>Option 2</li>
+      <li>Option 3</li>
+    </ul>
+  </div>
   
-  <ul>
-    <!--<li *ngFor="let e of employees$ | async">-->
-    <li *ngFor="let e of employees$">
+
+  <!-- <ul> -->
+  <!--<li *ngFor="let e of employees$ | async">-->
+  <!-- <li *ngFor="let e of employees$">
       {{e.lastName }}, {{e.firstName}}
     </li>
-  </ul>
+  </ul> -->
+
+  <div class="m-5">
+    <table class="table table-hover" style="color: white;" cellpadding="1" cellspacing="0" >
+      <tr>
+        <th>ID</th>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Postcode</th>
+        <th>Phone</th>
+      </tr>
+      <tr *ngFor="let e of employees$">
+        <td> {{e.id}}</td>
+        <td> {{e.lastName}}</td>
+        <td> {{e.firstName}}</td>
+        <td> {{e.street}}</td>
+        <td> {{e.city}}</td>
+        <td> {{e.postcode}}</td>
+        <td> {{e.phone}}</td>
+      </tr>
+    </table>
 </div>
+
+<app-popup #popup1 title="Mitarbeiter anlegen" [open]=false>
+  <div content>
+    <div class="container">
+      <div class="row">
+        <div style="display: flex">
+          <div style="width: fit-content;">
+            <h5>Vorname</h5>
+            <br/>
+
+            <h5>Nachname</h5>
+            <br/>
+
+            <h5>Straße</h5>
+            <br/>
+          </div>
+
+          <div style="width: 15px"></div>
+
+          <div style="width: 100%">
+            <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
+            <br/>
+
+            <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
+            <br/>
+
+            <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
+            <br/>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div buttons>
+    <a class="btn btn-primary">Okay</a>
+  </div>
+</app-popup>
+
+<app-popup #popup2 title="Popup Nummer 2">
+  <div content>
+    <h3>yeet 2</h3>
+  </div>
+  <div buttons>
+    <a class="btn btn-primary">Nö</a>
+  </div>
+</app-popup>
+
+<a class="btn btn-primary" (click)="popup1.open = true">POPUP1</a><br/><br/>
+<a class="btn btn-primary" (click)="popup2.open = true">POPUP2</a>

@@ -1,0 +1,12 @@
+.table {
+    text-align: center;
+    background-color: var(--tableColor);
+    border-radius: 8px;
+}
+
+.dropdown-menu {
+    display: none;
+}
+.dropdown-menu.open {
+    display: block;
+}
