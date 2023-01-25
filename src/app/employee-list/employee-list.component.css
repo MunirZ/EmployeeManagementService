@@ -1,8 +1,8 @@
-/* .table {
+.table {
     text-align: center;
     background-color: var(--tableColor);
     border-radius: 8px;
-} */
+} 
 
 tr:nth-child(even) {
     background-color: rgba(205, 255, 248, 0.4);
