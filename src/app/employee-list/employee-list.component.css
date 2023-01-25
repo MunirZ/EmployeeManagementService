@@ -1,12 +1,28 @@
-.table {
+/* .table {
     text-align: center;
     background-color: var(--tableColor);
     border-radius: 8px;
+} */
+
+tr:nth-child(even) {
+    background-color: rgba(205, 255, 248, 0.4);
+}
+
+tr:nth-child(even),
+td:nth-child(even),
+th:nth-child(even) {
+    background-color: rgba(205, 255, 248, 0.4);
+}
+
+
+tr:hover {
+    background-color: azure;
 }
 
 .dropdown-menu {
     display: none;
 }
+
 .dropdown-menu.open {
     display: block;
 }

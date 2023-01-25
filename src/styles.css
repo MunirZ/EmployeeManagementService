@@ -5,16 +5,16 @@ body {
     min-height: 100sh;
     background-color: var(--backgroundColor);
     color: var(--textColor);
-    //font-family: "Geneva", monospace;
+    /* font-family: "Geneva", monospace; */
 }
 
-:root{
-    --backgroundColor: rgb(32, 33, 36);
+:root {
+    --backgroundColor: rgb(134, 134, 134);
     --textColor: rgb(255, 255, 255);
     --buttonRadius: 4px;
     --buttonColor: rgba(35, 38, 204, 0.548);
     --buttonColorHover: rgba(76, 79, 248, 0.589);
-    --tableColor: rgb(36, 37, 41);
+    /* --tableColor: rgb(36, 37, 41); */
 
     --popupCloseColor: rgb(59, 77, 240);
     --popupRadius: 8px;
