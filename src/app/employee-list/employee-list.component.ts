@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { Employee } from "../Employee";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -40,10 +40,65 @@ export class EmployeeListComponent {
     //this.fetchData();
   }
 
+  @ViewChild("employeePopup") employeePopup!: PopupComponent;
+  @ViewChild("employeeFirstname") employeeFirstname!: ElementRef;
+  @ViewChild("employeeLastname") employeeLastname!: ElementRef;
+  @ViewChild("employeeStreet") employeeStreet!: ElementRef;
+  @ViewChild("employeePostcode") employeePostcode!: ElementRef;
+  @ViewChild("employeeCity") employeeCity!: ElementRef;
+  @ViewChild("employeePhone") employeePhone!: ElementRef;
+  createEmployeeFirstname: string = "";
+  createEmployeeLastname: string = "";
+  createEmployeeStreet: string = "";
+  createEmployeePostcode: string = "";
+  createEmployeeCity: string = "";
+  createEmployeePhone: string = "";
 
+  editEmployeePopup(e: any) {
+    if (!this.employeePopup.edit) {
+      this.createEmployeeFirstname = this.employeeFirstname.nativeElement.value;
+      this.createEmployeeLastname = this.employeeLastname.nativeElement.value;
+      this.createEmployeeStreet = this.employeeStreet.nativeElement.value;
+      this.createEmployeePostcode = this.employeePostcode.nativeElement.value;
+      this.createEmployeeCity = this.employeeCity.nativeElement.value;
+      this.createEmployeePhone = this.employeePhone.nativeElement.value;
+    }
 
-  AddEmployees(): void {
-    this.employees$.push(new Employee(1, "Munir", "Stinkt", "asdwa", "12345", "Ha", "12389051"));
+    this.employeeFirstname.nativeElement.value = e.firstName;
+    this.employeeLastname.nativeElement.value = e.lastName;
+    this.employeeStreet.nativeElement.value = e.street;
+    this.employeePostcode.nativeElement.value = e.postcode;
+    this.employeeCity.nativeElement.value = e.city;
+    this.employeePhone.nativeElement.value = e.phone;
+    this.employeePopup.edit = true;
+    this.employeePopup.open = true;
+  }
+
+  createEmployeePopup() {
+    if (this.employeePopup.edit) { 
+      this.employeeFirstname.nativeElement.value = this.createEmployeeFirstname;
+      this.employeeLastname.nativeElement.value = this.createEmployeeLastname;
+      this.employeeStreet.nativeElement.value = this.createEmployeeStreet;
+      this.employeePostcode.nativeElement.value = this.createEmployeePostcode;
+      this.employeeCity.nativeElement.value = this.createEmployeeCity;
+      this.employeePhone.nativeElement.value = this.createEmployeePhone;
+      this.employeePopup.edit = false;
+    }
+
+    this.employeePopup.open = true;
+  }
+
+  createEmployee(): void {
+    this.createEmployeeFirstname = "";
+    this.createEmployeeLastname = "";
+    this.createEmployeeStreet = "";
+    this.createEmployeePostcode = "";
+    this.createEmployeeCity = "";
+    this.createEmployeePhone = "";
+
+    this.employeePopup.open = false;
+
+    this.employees$.push(new Employee(1, this.employeeFirstname.nativeElement.value, this.employeeLastname.nativeElement.value, this.employeeStreet.nativeElement.value, this.employeePostcode.nativeElement.value, this.employeeCity.nativeElement.value, this.employeePhone.nativeElement.value));
   }
 
   onInputChange(event: any) {
