@@ -31,247 +31,174 @@
             d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z" />
         </svg></button>
     </div>
-    <div class="col">
-      <!-- <div *ngIf="isDropDownOpen" style="position: relative; top: 8rem; right: 8rem; background: black; width: 21rem;"> -->
-      <div *ngIf="isDropDownOpen"
-        style="position: absolute; background: rgba(48, 48, 48, 0.97); width: 30rem; top: 200px; right: 20px;"
-        class="border rounded">
-        <div class="row p-3">
-          <div class="col">
-            <p class="h4">Sortierung</p>
-            <hr>
 
-            <div class="">
-              <input type="radio" class="btn-check" id="RadioPrenameAZ" name="RadioSort">
-              <label for="RadioPrenameAZ" class="btn btn-outline-light btn-sm">Vorname A -> Z</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioPrenameZA" name="RadioSort">
-              <label for="RadioPrenameZA" class="btn btn-outline-light btn-sm">Vorname Z -> A</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioNameAZ" checked name="RadioSort">
-              <label for="RadioNameAZ" class="btn btn-outline-light btn-sm">Nachname A -> Z</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioNameZA" name="RadioSort">
-              <label for="RadioNameZA" class="btn btn-outline-light btn-sm">Nachname Z -> A</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioPostcodeUp" name="RadioSort">
-              <label for="RadioPostcodeUp" class="btn btn-outline-light btn-sm">Postleitzahl aufsteigend</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioPostcodeDown" name="RadioSort">
-              <label for="RadioPostcodeDown" class="btn btn-outline-light btn-sm">Postleitzahl absteigend</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioLocationAZ" name="RadioSort">
-              <label for="RadioLocationAZ" class="btn btn-outline-light btn-sm">Ort A -> Z</label>
-            </div>
-            <div>
-              <input type="radio" class="btn btn-check" id="RadioLocationZA" name="RadioSort">
-              <label for="RadioLocationZA" class="btn btn-outline-light btn-sm">Ort Z -> A</label>
-            </div>
-          </div>
-          <div class="col">
-            <p class="h4">Anzeigen</p>
-            <hr>
-            <div>
-              <input type="checkbox" class="btn btn-check" id="RadioID" name="RadioShow" [(ngModel)]="isIDClicked">
-              <label for="RadioID" class="btn btn-outline-light btn-sm">ID</label>
-            </div>
-            <div>
-              <input type="checkbox" class="btn btn-check" id="RadioPrename" name="RadioShow"
-                [(ngModel)]="isPrenameClicked">
-              <label for="RadioPrename" class="btn btn-outline-light btn-sm">Vorname</label>
-            </div>
-            <div>
-              <input type="checkbox" class="btn btn-check" id="RadioName" name="RadioShow"
-                [(ngModel)]="isLastnameClicked">
-              <label for="RadioName" class="btn btn-outline-light btn-sm">Nachname</label>
-            </div>
-            <div>
-              <input type="checkbox" class="btn btn-check" id="RadioTele" name="RadioShow"
-                [(ngModel)]="isTelefonClicked">
-              <label for="RadioTele" class="btn btn-outline-light btn-sm">Telefon</label>
-            </div>
-            <div>
-              <input type="checkbox" class="btn btn-check" id="RadioAddress" name="RadioShow"
-                [(ngModel)]="isAddressClicked">
-              <label for="RadioAddress" class="btn btn-outline-light btn-sm">Address</label>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
-
-
-  <!-- <div class="row g-3">
+    <!-- <div class="row g-3">
     <div class="col-sm-7">
       <input type="text" class="form-control" placeholder="Suchbegriff">
     </div>
     <div class="col">
       <div *ngIf="isDropDownOpen" style="position: relative; top: 8rem; right: 8rem; background: black; width: 21rem;"> -->
-  <div *ngIf="isDropDownOpen"
-    style="position: absolute; background: rgba(48, 48, 48, 0.97); width: 30rem; top: 200px; right: 20px;"
-    class="border rounded">
-    <div class="row p-3">
-      <div class="col">
-        <p class="h4">Sortierung</p>
-        <hr>
+    <div *ngIf="isDropDownOpen"
+      style="position: absolute; background: rgba(48, 48, 48, 0.97); width: 30rem; top: 200px; right: 20px;"
+      class="border rounded">
+      <div class="row p-3">
+        <div class="col">
+          <p class="h4">Sortierung</p>
+          <hr>
 
-        <div class="">
-          <input type="radio" class="btn-check" id="RadioPrenameAZ" name="RadioSort">
-          <label for="RadioPrenameAZ" class="btn btn-outline-light btn-sm">Vorname A -> Z</label>
+          <div class="">
+            <input type="radio" class="btn-check" id="RadioPrenameAZ" name="RadioSort">
+            <label for="RadioPrenameAZ" class="btn btn-outline-light btn-sm">Vorname A -> Z</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioPrenameZA" name="RadioSort">
+            <label for="RadioPrenameZA" class="btn btn-outline-light btn-sm">Vorname Z -> A</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioNameAZ" checked name="RadioSort">
+            <label for="RadioNameAZ" class="btn btn-outline-light btn-sm">Nachname A -> Z</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioNameZA" name="RadioSort">
+            <label for="RadioNameZA" class="btn btn-outline-light btn-sm">Nachname Z -> A</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioPostcodeUp" name="RadioSort">
+            <label for="RadioPostcodeUp" class="btn btn-outline-light btn-sm">Postleitzahl aufsteigend</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioPostcodeDown" name="RadioSort">
+            <label for="RadioPostcodeDown" class="btn btn-outline-light btn-sm">Postleitzahl absteigend</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioLocationAZ" name="RadioSort">
+            <label for="RadioLocationAZ" class="btn btn-outline-light btn-sm">Ort A -> Z</label>
+          </div>
+          <div>
+            <input type="radio" class="btn btn-check" id="RadioLocationZA" name="RadioSort">
+            <label for="RadioLocationZA" class="btn btn-outline-light btn-sm">Ort Z -> A</label>
+          </div>
         </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioPrenameZA" name="RadioSort">
-          <label for="RadioPrenameZA" class="btn btn-outline-light btn-sm">Vorname Z -> A</label>
-        </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioNameAZ" checked name="RadioSort">
-          <label for="RadioNameAZ" class="btn btn-outline-light btn-sm">Nachname A -> Z</label>
-        </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioNameZA" name="RadioSort">
-          <label for="RadioNameZA" class="btn btn-outline-light btn-sm">Nachname Z -> A</label>
-        </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioPostcodeUp" name="RadioSort">
-          <label for="RadioPostcodeUp" class="btn btn-outline-light btn-sm">Postleitzahl aufsteigend</label>
-        </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioPostcodeDown" name="RadioSort">
-          <label for="RadioPostcodeDown" class="btn btn-outline-light btn-sm">Postleitzahl absteigend</label>
-        </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioLocationAZ" name="RadioSort">
-          <label for="RadioLocationAZ" class="btn btn-outline-light btn-sm">Ort A -> Z</label>
-        </div>
-        <div>
-          <input type="radio" class="btn btn-check" id="RadioLocationZA" name="RadioSort">
-          <label for="RadioLocationZA" class="btn btn-outline-light btn-sm">Ort Z -> A</label>
-        </div>
-      </div>
-      <div class="col">
-        <p class="h4">Anzeigen</p>
-        <hr>
-        <div>
-          <input type="checkbox" class="btn btn-check" id="RadioID" name="RadioShow" [(ngModel)]="isIDClicked">
-          <label for="RadioID" class="btn btn-outline-light btn-sm">ID</label>
-        </div>
-        <div>
-          <input type="checkbox" class="btn btn-check" id="RadioPrename" name="RadioShow"
-            [(ngModel)]="isPrenameClicked">
-          <label for="RadioPrename" class="btn btn-outline-light btn-sm">Vorname</label>
-        </div>
-        <div>
-          <input type="checkbox" class="btn btn-check" id="RadioName" name="RadioShow" [(ngModel)]="isLastnameClicked">
-          <label for="RadioName" class="btn btn-outline-light btn-sm">Nachname</label>
-        </div>
-        <div>
-          <input type="checkbox" class="btn btn-check" id="RadioTele" name="RadioShow" [(ngModel)]="isTelefonClicked">
-          <label for="RadioTele" class="btn btn-outline-light btn-sm">Telefon</label>
-        </div>
-        <div>
-          <input type="checkbox" class="btn btn-check" id="RadioAddress" name="RadioShow"
-            [(ngModel)]="isAddressClicked">
-          <label for="RadioAddress" class="btn btn-outline-light btn-sm">Address</label>
+        <div class="col">
+          <p class="h4">Anzeigen</p>
+          <hr>
+          <div>
+            <input type="checkbox" class="btn btn-check" id="RadioID" name="RadioShow" [(ngModel)]="isIDClicked">
+            <label for="RadioID" class="btn btn-outline-light btn-sm">ID</label>
+          </div>
+          <div>
+            <input type="checkbox" class="btn btn-check" id="RadioPrename" name="RadioShow"
+              [(ngModel)]="isPrenameClicked">
+            <label for="RadioPrename" class="btn btn-outline-light btn-sm">Vorname</label>
+          </div>
+          <!-- <div>
+            <input type="checkbox" class="btn btn-check" id="RadioName" name="RadioShow"
+              [(ngModel)]="isLastnameClicked">
+            <label for="RadioName" class="btn btn-outline-light btn-sm">Nachname</label>
+          </div> -->
+          <div>
+            <input type="checkbox" class="btn btn-check" id="RadioTele" name="RadioShow" [(ngModel)]="isTelefonClicked">
+            <label for="RadioTele" class="btn btn-outline-light btn-sm">Telefon</label>
+          </div>
+          <div>
+            <input type="checkbox" class="btn btn-check" id="RadioAddress" name="RadioShow"
+              [(ngModel)]="isAddressClicked">
+            <label for="RadioAddress" class="btn btn-outline-light btn-sm">Address</label>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
-<!-- <div *ngIf="isDropDownOpen">
-    <ul>
-      <li>
-        <input type="radio" class="btn-check" value="" id="test"> 
-        <label class="btn btn-outline-light" for="test">Test</label>
-      </li>
-      <li>Option 2</li>
-      <li>Option 3</li>
-    </ul>
-  </div> -->
-
-
-<!-- <ul> -->
-<!--<li *ngFor="let e of employees$ | async">-->
-<!-- <li *ngFor="let e of employees$">
+  <!-- <ul> -->
+  <!--<li *ngFor="let e of employees$ | async">-->
+  <!-- <li *ngFor="let e of employees$">
       {{e.lastName }}, {{e.firstName}}
     </li>
   </ul> -->
 
-<div class="mt-5">
-  <table id="TableEmployee" class="table table-hover">
-    <thead>
-      <th [hidden]="isIDClicked">ID</th>
-      <th [hidden]="isLastnameClicked">Nachname</th>
-      <th [hidden]="isPrenameClicked">Vorname</th>
-      <th [hidden]="isAddressClicked">Straße</th>
-      <th [hidden]="isAddressClicked">Stadt</th>
-      <th [hidden]="isAddressClicked">Postleitzahl</th>
-      <th [hidden]="isTelefonClicked">Telefon</th>
-    </thead>
-    <tr *ngFor="let e of employees$" style="cursor: pointer" (click)="personPopup.edit = true; personPopup.open = true;">
-      <td [hidden]="isIDClicked"> {{e.id}}</td>
-      <td [hidden]="isLastnameClicked"> {{e.lastName}}</td>
-      <td [hidden]="isPrenameClicked"> {{e.firstName}}</td>
-      <td [hidden]="isAddressClicked"> {{e.street}}</td>
-      <td [hidden]="isAddressClicked"> {{e.city}}</td>
-      <td [hidden]="isAddressClicked"> {{e.postcode}}</td>
-      <td [hidden]="isTelefonClicked"> {{e.phone}}</td>
-    </tr>
-  </table>
-</div>
+  <div class="mt-5">
+    <table id="TableEmployee" class="table table-hover">
+      <thead>
+        <th [hidden]="isIDClicked">ID</th>
+        <th [hidden]="isLastnameClicked">Nachname</th>
+        <th [hidden]="isPrenameClicked">Vorname</th>
+        <th [hidden]="isAddressClicked">Straße</th>
+        <th [hidden]="isAddressClicked">Stadt</th>
+        <th [hidden]="isAddressClicked">Postleitzahl</th>
+        <th [hidden]="isTelefonClicked">Telefon</th>
+      </thead>
+      <tr *ngFor="let e of employees$" style="cursor: pointer"
+        (click)="personPopup.edit = true; personPopup.open = true;">
+        <td [hidden]="isIDClicked"> {{e.id}}</td>
+        <td [hidden]="isLastnameClicked"> {{e.lastName}}</td>
+        <td [hidden]="isPrenameClicked"> {{e.firstName}}</td>
+        <td [hidden]="isAddressClicked"> {{e.street}}</td>
+        <td [hidden]="isAddressClicked"> {{e.city}}</td>
+        <td [hidden]="isAddressClicked"> {{e.postcode}}</td>
+        <td [hidden]="isTelefonClicked"> {{e.phone}}</td>
+      </tr>
+    </table>
+  </div>
 
 
-<app-popup #personPopup [title]="personPopup.edit ? 'Mitarbeiter anlegen' : 'Mitarbeiter verwalten'" [open]=false>
-  <div content>
-    <div class="container">
-      <div class="row">
-        <div style="display: flex">
-          <table class="popup-form">
-            <tr>
-              <td class="popup-form-field-name">Vorname</td>
-              <td class="popup-form-field-input"><div><input id="input-create-firstname"/></div><td>
-            </tr>
-            <tr>
-              <td class="popup-form-field-name">Nachname</td>
-              <td class="popup-form-field-input"><div><input id="input-create-lastname"/></div><td>
-            </tr>
-            <tr>
-              <td class="popup-form-field-name">Straße</td>
-              <td class="popup-form-field-input"><div><input id="input-create-street"/></div><td>
-            </tr>
-            <tr>
-              <td class="popup-form-field-name">PLZ</td>
-              <td class="popup-form-field-input"><div><input id="input-create-postal"/></div><td>
-            </tr>
-            <tr>
-              <td class="popup-form-field-name">Ort</td>
-              <td class="popup-form-field-input"><div><input id="input-create-city"/></div><td>
-            </tr>
-            <tr>
-              <td class="popup-form-field-name">Tel. Nr.</td>
-              <td class="popup-form-field-input"><div><input id="input-create-phone"/></div><td>
-            </tr>
-            <tr>
-              <td class="popup-form-field-name"></td>
-              <td class="popup-form-field-input">
-                <div style="margin-top: 10px;">
-                  <a class="btn btn-primary">Anlegen</a>
-                  <a *ngIf="personPopup.edit" class="btn btn-primary" style="margin-left: 10px">Löschen</a>
-                </div>
-              <td>
-            </tr>
-          </table>
+  <app-popup #personPopup [title]="personPopup.edit ? 'Mitarbeiter anlegen' : 'Mitarbeiter verwalten'" [open]=false>
+    <div content>
+      <div class="container">
+        <div class="row">
+          <div style="display: flex">
+            <table class="popup-form">
+              <tr>
+                <td class="popup-form-field-name">Vorname</td>
+                <td class="popup-form-field-input">
+                  <div><input id="input-create-firstname" /></div>
+                <td>
+              </tr>
+              <tr>
+                <td class="popup-form-field-name">Nachname</td>
+                <td class="popup-form-field-input">
+                  <div><input id="input-create-lastname" /></div>
+                <td>
+              </tr>
+              <tr>
+                <td class="popup-form-field-name">Straße</td>
+                <td class="popup-form-field-input">
+                  <div><input id="input-create-street" /></div>
+                <td>
+              </tr>
+              <tr>
+                <td class="popup-form-field-name">PLZ</td>
+                <td class="popup-form-field-input">
+                  <div><input id="input-create-postal" /></div>
+                <td>
+              </tr>
+              <tr>
+                <td class="popup-form-field-name">Ort</td>
+                <td class="popup-form-field-input">
+                  <div><input id="input-create-city" /></div>
+                <td>
+              </tr>
+              <tr>
+                <td class="popup-form-field-name">Tel. Nr.</td>
+                <td class="popup-form-field-input">
+                  <div><input id="input-create-phone" /></div>
+                <td>
+              </tr>
+              <tr>
+                <td class="popup-form-field-name"></td>
+                <td class="popup-form-field-input">
+                  <div style="margin-top: 10px;">
+                    <a class="btn btn-primary">Anlegen</a>
+                    <a *ngIf="personPopup.edit" class="btn btn-primary" style="margin-left: 10px">Löschen</a>
+                  </div>
+                <td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</app-popup>
+  </app-popup>
+</div>
