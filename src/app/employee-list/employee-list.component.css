@@ -4,9 +4,19 @@
     border-radius: 8px;
 }
 
+.table > tr {
+    background-color: grey;
+}
+
+.table > tr:hover {
+    background-color: rgb(148, 148, 148);
+}
+
+
 .dropdown-menu {
     display: none;
 }
+
 .dropdown-menu.open {
     display: block;
 }
