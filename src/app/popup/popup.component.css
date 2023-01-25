@@ -8,8 +8,16 @@
     position: fixed;
     top: 10vh;
     left: 50vw;
-    width: 50vw;
-    transform: translateX(-50%);
+    width: 450px;
+    transform: translateX(-225px);
+}
+
+table > tr > td {
+    font-size: 30px;
+}
+
+table > tr > td > input {
+    width: 100%;
 }
 
 .popup-blur {

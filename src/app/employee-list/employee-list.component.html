@@ -3,7 +3,11 @@
     <div class="col">
       <p class="h1">Alle Mitarbeiter</p>
     </div>
+    <!-- <div class="col">
+      <button type="button" class="btn btn-primary" (click)="AddEmployees()">Mitarbeiter anlegen</button>
+    </div> -->
   </div>
+
 
   <div class="row align-items-center"> <!--justify-content-end-->
     <div class="col">
@@ -105,120 +109,178 @@
     </div>
 
   </div>
-  <!-- 
-  <div *ngIf="isDropDownOpen" style="position: absolute; top: 8rem; right: 8rem; background: black; width: 21rem;">
+
+
+
+  <!-- <div class="row g-3">
+    <div class="col-sm-7">
+      <input type="text" class="form-control" placeholder="Suchbegriff">
+    </div>
+    <div class="col">
+      <!-- <div *ngIf="isDropDownOpen" style="position: relative; top: 8rem; right: 8rem; background: black; width: 21rem;"> -->
+  <div *ngIf="isDropDownOpen"
+    style="position: absolute; background: rgba(48, 48, 48, 0.97); width: 30rem; top: 200px; right: 20px;"
+    class="border rounded">
     <div class="row p-3">
       <div class="col">
         <p class="h4">Sortierung</p>
+        <hr>
 
-        <input type="radio" class="btn btn-check" id="RadioPrenameAZ" name="RadioSort">
-        <label for="RadioPrenameAZ" class="btn btn-outline-light">Vorname A-Z</label>
-
-        <input type="radio" class="btn btn-check" id="RadioPrenameZA" name="RadioSort">
-        <label for="RadioPrenameZA" class="btn btn-outline-light">Vorname Z-A</label>
-
-        <input type="radio" class="btn btn-check" id="RadioNameAZ" checked name="RadioSort">
-        <label for="RadioNameAZ" class="btn btn-outline-light">Nachname A-Z</label>
-
-        <input type="radio" class="btn btn-check" id="RadioNameZA" name="RadioSort">
-        <label for="RadioNameZA" class="btn btn-outline-light">Nachname Z-A</label>
-
+        <div class="">
+          <input type="radio" class="btn-check" id="RadioPrenameAZ" name="RadioSort">
+          <label for="RadioPrenameAZ" class="btn btn-outline-light btn-sm">Vorname A -> Z</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioPrenameZA" name="RadioSort">
+          <label for="RadioPrenameZA" class="btn btn-outline-light btn-sm">Vorname Z -> A</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioNameAZ" checked name="RadioSort">
+          <label for="RadioNameAZ" class="btn btn-outline-light btn-sm">Nachname A -> Z</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioNameZA" name="RadioSort">
+          <label for="RadioNameZA" class="btn btn-outline-light btn-sm">Nachname Z -> A</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioPostcodeUp" name="RadioSort">
+          <label for="RadioPostcodeUp" class="btn btn-outline-light btn-sm">Postleitzahl aufsteigend</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioPostcodeDown" name="RadioSort">
+          <label for="RadioPostcodeDown" class="btn btn-outline-light btn-sm">Postleitzahl absteigend</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioLocationAZ" name="RadioSort">
+          <label for="RadioLocationAZ" class="btn btn-outline-light btn-sm">Ort A -> Z</label>
+        </div>
+        <div>
+          <input type="radio" class="btn btn-check" id="RadioLocationZA" name="RadioSort">
+          <label for="RadioLocationZA" class="btn btn-outline-light btn-sm">Ort Z -> A</label>
+        </div>
       </div>
       <div class="col">
         <p class="h4">Anzeigen</p>
-
-        <input type="checkbox" class="btn btn-check" id="RadioID" name="RadioShow">
-        <label for="RadioID" class="btn btn-outline-light">ID</label>
-
-        <input type="checkbox" class="btn btn-check" id="RadioPrename" name="RadioShow">
-        <label for="RadioPrename" class="btn btn-outline-light">Vorname</label>
-
-        <input type="checkbox" class="btn btn-check" id="RadioName" name="RadioShow">
-        <label for="RadioName" class="btn btn-outline-light">Nachname</label>
-
-        <input type="checkbox" class="btn btn-check" id="RadioTele" name="RadioShow">
-        <label for="RadioTele" class="btn btn-outline-light">Telefon</label>
-
+        <hr>
+        <div>
+          <input type="checkbox" class="btn btn-check" id="RadioID" name="RadioShow" [(ngModel)]="isIDClicked">
+          <label for="RadioID" class="btn btn-outline-light btn-sm">ID</label>
+        </div>
+        <div>
+          <input type="checkbox" class="btn btn-check" id="RadioPrename" name="RadioShow"
+            [(ngModel)]="isPrenameClicked">
+          <label for="RadioPrename" class="btn btn-outline-light btn-sm">Vorname</label>
+        </div>
+        <div>
+          <input type="checkbox" class="btn btn-check" id="RadioName" name="RadioShow" [(ngModel)]="isLastnameClicked">
+          <label for="RadioName" class="btn btn-outline-light btn-sm">Nachname</label>
+        </div>
+        <div>
+          <input type="checkbox" class="btn btn-check" id="RadioTele" name="RadioShow" [(ngModel)]="isTelefonClicked">
+          <label for="RadioTele" class="btn btn-outline-light btn-sm">Telefon</label>
+        </div>
+        <div>
+          <input type="checkbox" class="btn btn-check" id="RadioAddress" name="RadioShow"
+            [(ngModel)]="isAddressClicked">
+          <label for="RadioAddress" class="btn btn-outline-light btn-sm">Address</label>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+</div> -->
+
+
+
+<!-- <div *ngIf="isDropDownOpen">
+    <ul>
+      <li>
+        <input type="radio" class="btn-check" value="" id="test"> 
+        <label class="btn btn-outline-light" for="test">Test</label>
+      </li>
+      <li>Option 2</li>
+      <li>Option 3</li>
+    </ul>
   </div> -->
 
 
-  <!-- <ul> -->
-  <!--<li *ngFor="let e of employees$ | async">-->
-  <!-- <li *ngFor="let e of employees$">
+<!-- <ul> -->
+<!--<li *ngFor="let e of employees$ | async">-->
+<!-- <li *ngFor="let e of employees$">
       {{e.lastName }}, {{e.firstName}}
     </li>
   </ul> -->
 
-  <div class="mt-5">
-    <table id="TableEmployee" class="table table-hover">
-      <thead>
-        <th [hidden]="isIDClicked">ID</th>
-        <th [hidden]="isLastnameClicked">Nachname</th>
-        <th [hidden]="isPrenameClicked">Vorname</th>
-        <th [hidden]="isAddressClicked">Straße</th>
-        <th [hidden]="isAddressClicked">Stadt</th>
-        <th [hidden]="isAddressClicked">Postleitzahl</th>
-        <th [hidden]="isTelefonClicked">Telefon</th>
-      </thead>
-      <tr *ngFor="let e of employees$" (click)="popup2.open = true">
-        <td [hidden]="isIDClicked"> {{e.id}}</td>
-        <td [hidden]="isLastnameClicked"> {{e.lastName}}</td>
-        <td [hidden]="isPrenameClicked"> {{e.firstName}}</td>
-        <td [hidden]="isAddressClicked"> {{e.street}}</td>
-        <td [hidden]="isAddressClicked"> {{e.city}}</td>
-        <td [hidden]="isAddressClicked"> {{e.postcode}}</td>
-        <td [hidden]="isTelefonClicked"> {{e.phone}}</td>
-      </tr>
-    </table>
-  </div>
+<div class="mt-5">
+  <table id="TableEmployee" class="table table-hover">
+    <thead>
+      <th [hidden]="isIDClicked">ID</th>
+      <th [hidden]="isLastnameClicked">Nachname</th>
+      <th [hidden]="isPrenameClicked">Vorname</th>
+      <th [hidden]="isAddressClicked">Straße</th>
+      <th [hidden]="isAddressClicked">Stadt</th>
+      <th [hidden]="isAddressClicked">Postleitzahl</th>
+      <th [hidden]="isTelefonClicked">Telefon</th>
+    </thead>
+    <tr *ngFor="let e of employees$" (click)="popup2.open = true">
+      <td [hidden]="isIDClicked"> {{e.id}}</td>
+      <td [hidden]="isLastnameClicked"> {{e.lastName}}</td>
+      <td [hidden]="isPrenameClicked"> {{e.firstName}}</td>
+      <td [hidden]="isAddressClicked"> {{e.street}}</td>
+      <td [hidden]="isAddressClicked"> {{e.city}}</td>
+      <td [hidden]="isAddressClicked"> {{e.postcode}}</td>
+      <td [hidden]="isTelefonClicked"> {{e.phone}}</td>
+    </tr>
+  </table>
+</div>
 
-  <app-popup #popup1 title="Mitarbeiter anlegen" [open]=false>
-    <div content>
-      <div class="container">
-        <div class="row">
-          <div style="display: flex">
-            <div style="width: fit-content;">
-              <h5>Vorname</h5>
-              <br />
-
-              <h5>Nachname</h5>
-              <br />
-
-              <h5>Straße</h5>
-              <br />
-            </div>
-
-            <div style="width: 15px"></div>
-
-            <div style="width: 100%">
-              <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
-              <br />
-
-              <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
-              <br />
-
-              <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
-              <br />
-            </div>
-          </div>
+<app-popup #popup1 title="Mitarbeiter anlegen" [open]=false>
+  <div content>
+    <div class="container">
+      <div class="row">
+        <div style="display: flex">
+          <table>
+            <tr>
+              <td>Vorname</td>
+              <td><input text="" /></td>
+            </tr>
+            <tr>
+              <td>Nachname</td>
+              <td><input text="" /></td>
+            </tr>
+            <tr>
+              <td>Straße</td>
+              <td><input text="" /></td>
+            </tr>
+            <tr>
+              <td>PLZ</td>
+              <td><input text="" /></td>
+            </tr>
+            <tr>
+              <td>Ort</td>
+              <td><input text="" /></td>
+            </tr>
+            <tr>
+              <td>Tel. Nr.</td>
+              <td><input text="" /></td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
     <div buttons>
       <a class="btn btn-primary">Okay</a>
     </div>
-  </app-popup>
+</app-popup>
 
-  <app-popup #popup2 title="Popup Nummer 2">
-    <div content>
-      <h3>yeet 2</h3>
-    </div>
-    <div buttons>
-      <a class="btn btn-primary">Nö</a>
-    </div>
-  </app-popup>
+<app-popup #popup2 title="Popup Nummer 2">
+  <div content>
+    <h3>yeet 2</h3>
+  </div>
+  <div buttons>
+    <a class="btn btn-primary">Nö</a>
+  </div>
+</app-popup>
 
-  <a class="btn btn-primary" (click)="popup1.open = true">POPUP1</a><br /><br />
-  <a class="btn btn-primary" (click)="popup2.open = true">POPUP2</a>
+<a class="btn btn-primary" (click)="popup1.open = true">POPUP1</a><br /><br />
+<a class="btn btn-primary" (click)="popup2.open = true">POPUP2</a>
