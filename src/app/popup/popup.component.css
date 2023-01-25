@@ -9,15 +9,7 @@
     top: 10vh;
     left: 50vw;
     width: 450px;
-    transform: translateX(-225px);
-}
-
-table > tr > td {
-    font-size: 30px;
-}
-
-table > tr > td > input {
-    width: 100%;
+    transform: translateX(-50%);
 }
 
 .popup-blur {
@@ -31,7 +23,9 @@ table > tr > td > input {
 }
 
 .popup > h2 {
-    margin-left: 10px;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: -5px;
 }
 
 .popup > .close {
@@ -55,6 +49,7 @@ table > tr > td > input {
     width: calc(100% - 40px);
     margin-left: 20px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .popup > .buttons {
@@ -62,7 +57,7 @@ table > tr > td > input {
     width: calc(100% - 20px);
     height: 40px;
     position: relative;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 20px;
     bottom: 10px;
     left: 10px;

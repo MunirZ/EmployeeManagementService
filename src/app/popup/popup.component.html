@@ -3,15 +3,16 @@
 
     <div class="popup">
         <h2>{{ title }}</h2>
-        
         <button class="btn close" (click)="open = false;">&#9587;</button>
-        
+
         <div class="content">
             <ng-content select="[content]"></ng-content>
         </div>
         
+        <!--
         <div class="buttons">
             <ng-content select="[buttons]"></ng-content>
         </div>
+        -->
     </div>
 </div>

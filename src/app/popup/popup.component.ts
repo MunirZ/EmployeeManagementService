@@ -6,6 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent {
+  [key: string]: any;
+
   @Input() title: string = "Test";
   @Input() open: boolean = false;
 }
