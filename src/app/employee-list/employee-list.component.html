@@ -1,14 +1,118 @@
 <div class="container">
   <div class="row m-5">
     <div class="col">
-      <p>Alle Mitarbeiter</p>
+      <p class="h1">Alle Mitarbeiter</p>
     </div>
-    <div class="col">
+    <!-- <div class="col">
       <button type="button" class="btn btn-primary" (click)="AddEmployees()">Mitarbeiter anlegen</button>
-    </div>
+    </div> -->
   </div>
 
-  <div class="row g-3">
+
+  <div class="row align-items-center"> <!--justify-content-end-->
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Suchbegriff" (input)="onInputChange($event)">
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="isDropDownOpen = !isDropDownOpen">
+        <svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <title>filter-cog-outline</title>
+          <path
+            d="M22.77 19.32L21.7 18.5C21.72 18.33 21.74 18.17 21.74 18S21.73 17.67 21.7 17.5L22.76 16.68C22.85 16.6 22.88 16.47 22.82 16.36L21.82 14.63C21.76 14.5 21.63 14.5 21.5 14.5L20.27 15C20 14.82 19.73 14.65 19.42 14.53L19.23 13.21C19.22 13.09 19.11 13 19 13H17C16.87 13 16.76 13.09 16.74 13.21L16.55 14.53C16.25 14.66 15.96 14.82 15.7 15L14.46 14.5C14.35 14.5 14.22 14.5 14.15 14.63L13.15 16.36C13.09 16.47 13.11 16.6 13.21 16.68L14.27 17.5C14.25 17.67 14.24 17.83 14.24 18S14.25 18.33 14.27 18.5L13.21 19.32C13.12 19.4 13.09 19.53 13.15 19.64L14.15 21.37C14.21 21.5 14.34 21.5 14.46 21.5L15.7 21C15.96 21.18 16.24 21.35 16.55 21.47L16.74 22.79C16.76 22.91 16.86 23 17 23H19C19.11 23 19.22 22.91 19.24 22.79L19.43 21.47C19.73 21.34 20 21.18 20.27 21L21.5 21.5C21.63 21.5 21.76 21.5 21.83 21.37L22.83 19.64C22.89 19.53 22.86 19.4 22.77 19.32M18 19.5C17.16 19.5 16.5 18.83 16.5 18S17.17 16.5 18 16.5 19.5 17.17 19.5 18 18.83 19.5 18 19.5M17.62 3.22C17.43 3.08 17.22 3 17 3H3C2.78 3 2.57 3.08 2.38 3.22C1.95 3.56 1.87 4.19 2.21 4.62L7 10.75V15.87C6.96 16.16 7.06 16.47 7.29 16.7L11.3 20.71C11.4 20.81 11.5 20.88 11.65 20.93C11.22 20 11 19 11 18C11 16.17 11.72 14.41 13 13.1V10.75L17.79 4.62C18.13 4.19 18.05 3.56 17.62 3.22M11 10.05V17.58L9 15.58V10.06L5.04 5H14.96L11 10.05Z" />
+        </svg></button>
+      <!-- <button type="button" class="btn btn-primary"><svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+          <title>account-search-outline</title>
+          <path
+            d="M10,13C9.65,13.59 9.36,14.24 9.19,14.93C6.5,15.16 3.9,16.42 3.9,17V18.1H9.2C9.37,18.78 9.65,19.42 10,20H2V17C2,14.34 7.33,13 10,13M10,4A4,4 0 0,1 14,8C14,8.91 13.69,9.75 13.18,10.43C12.32,10.75 11.55,11.26 10.91,11.9L10,12A4,4 0 0,1 6,8A4,4 0 0,1 10,4M10,5.9A2.1,2.1 0 0,0 7.9,8A2.1,2.1 0 0,0 10,10.1A2.1,2.1 0 0,0 12.1,8A2.1,2.1 0 0,0 10,5.9M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.21 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14Z" />
+        </svg></button> -->
+      <button type="button" class="btn btn-primary" (click)="popup1.open = true"><svg width="30px" height="30px"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <title>account-plus</title>
+          <path
+            d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z" />
+        </svg></button>
+    </div>
+    <div class="col">
+      <!-- <div *ngIf="isDropDownOpen" style="position: relative; top: 8rem; right: 8rem; background: black; width: 21rem;"> -->
+      <div *ngIf="isDropDownOpen"
+        style="position: absolute; background: rgba(48, 48, 48, 0.97); width: 30rem; top: 200px; right: 20px;"
+        class="border rounded">
+        <div class="row p-3">
+          <div class="col">
+            <p class="h4">Sortierung</p>
+            <hr>
+
+            <div class="">
+              <input type="radio" class="btn-check" id="RadioPrenameAZ" name="RadioSort">
+              <label for="RadioPrenameAZ" class="btn btn-outline-light btn-sm">Vorname A -> Z</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioPrenameZA" name="RadioSort">
+              <label for="RadioPrenameZA" class="btn btn-outline-light btn-sm">Vorname Z -> A</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioNameAZ" checked name="RadioSort">
+              <label for="RadioNameAZ" class="btn btn-outline-light btn-sm">Nachname A -> Z</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioNameZA" name="RadioSort">
+              <label for="RadioNameZA" class="btn btn-outline-light btn-sm">Nachname Z -> A</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioPostcodeUp" name="RadioSort">
+              <label for="RadioPostcodeUp" class="btn btn-outline-light btn-sm">Postleitzahl aufsteigend</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioPostcodeDown" name="RadioSort">
+              <label for="RadioPostcodeDown" class="btn btn-outline-light btn-sm">Postleitzahl absteigend</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioLocationAZ" name="RadioSort">
+              <label for="RadioLocationAZ" class="btn btn-outline-light btn-sm">Ort A -> Z</label>
+            </div>
+            <div>
+              <input type="radio" class="btn btn-check" id="RadioLocationZA" name="RadioSort">
+              <label for="RadioLocationZA" class="btn btn-outline-light btn-sm">Ort Z -> A</label>
+            </div>
+          </div>
+          <div class="col">
+            <p class="h4">Anzeigen</p>
+            <hr>
+            <div>
+              <input type="checkbox" class="btn btn-check" id="RadioID" name="RadioShow" [(ngModel)]="isIDClicked">
+              <label for="RadioID" class="btn btn-outline-light btn-sm">ID</label>
+            </div>
+            <div>
+              <input type="checkbox" class="btn btn-check" id="RadioPrename" name="RadioShow"
+                [(ngModel)]="isPrenameClicked">
+              <label for="RadioPrename" class="btn btn-outline-light btn-sm">Vorname</label>
+            </div>
+            <div>
+              <input type="checkbox" class="btn btn-check" id="RadioName" name="RadioShow"
+                [(ngModel)]="isLastnameClicked">
+              <label for="RadioName" class="btn btn-outline-light btn-sm">Nachname</label>
+            </div>
+            <div>
+              <input type="checkbox" class="btn btn-check" id="RadioTele" name="RadioShow"
+                [(ngModel)]="isTelefonClicked">
+              <label for="RadioTele" class="btn btn-outline-light btn-sm">Telefon</label>
+            </div>
+            <div>
+              <input type="checkbox" class="btn btn-check" id="RadioAddress" name="RadioShow"
+                [(ngModel)]="isAddressClicked">
+              <label for="RadioAddress" class="btn btn-outline-light btn-sm">Address</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- <div class="row g-3">
     <div class="col-sm-7">
       <input type="text" class="form-control" placeholder="Suchbegriff">
     </div>
@@ -18,9 +122,11 @@
     <div class="col-sm">
       <button type="button" class="btn btn-primary" (click)="isDropDownOpen = !isDropDownOpen">Sortierung</button>
     </div>
-  </div>
+  </div> -->
 
-  <div *ngIf="isDropDownOpen">
+
+
+  <!-- <div *ngIf="isDropDownOpen">
     <ul>
       <li>
         <input type="radio" class="btn-check" value="" id="test"> 
@@ -29,7 +135,7 @@
       <li>Option 2</li>
       <li>Option 3</li>
     </ul>
-  </div>
+  </div> -->
   
 
   <!-- <ul> -->
@@ -39,57 +145,60 @@
     </li>
   </ul> -->
 
-  <div class="m-5">
-    <table class="table table-hover" style="color: white;" cellpadding="1" cellspacing="0" >
-      <tr>
-        <th>ID</th>
-        <th>Lastname</th>
-        <th>Firstname</th>
-        <th>Street</th>
-        <th>City</th>
-        <th>Postcode</th>
-        <th>Phone</th>
-      </tr>
-      <tr *ngFor="let e of employees$">
-        <td> {{e.id}}</td>
-        <td> {{e.lastName}}</td>
-        <td> {{e.firstName}}</td>
-        <td> {{e.street}}</td>
-        <td> {{e.city}}</td>
-        <td> {{e.postcode}}</td>
-        <td> {{e.phone}}</td>
+  <div class="mt-5">
+    <table id="TableEmployee" class="table table-hover">
+      <thead>
+        <th [hidden]="isIDClicked">ID</th>
+        <th [hidden]="isLastnameClicked">Nachname</th>
+        <th [hidden]="isPrenameClicked">Vorname</th>
+        <th [hidden]="isAddressClicked">Straße</th>
+        <th [hidden]="isAddressClicked">Stadt</th>
+        <th [hidden]="isAddressClicked">Postleitzahl</th>
+        <th [hidden]="isTelefonClicked">Telefon</th>
+      </thead>
+      <tr *ngFor="let e of employees$" (click)="popup2.open = true">
+        <td [hidden]="isIDClicked"> {{e.id}}</td>
+        <td [hidden]="isLastnameClicked"> {{e.lastName}}</td>
+        <td [hidden]="isPrenameClicked"> {{e.firstName}}</td>
+        <td [hidden]="isAddressClicked"> {{e.street}}</td>
+        <td [hidden]="isAddressClicked"> {{e.city}}</td>
+        <td [hidden]="isAddressClicked"> {{e.postcode}}</td>
+        <td [hidden]="isTelefonClicked"> {{e.phone}}</td>
       </tr>
     </table>
-</div>
+  </div>
 
 <app-popup #popup1 title="Mitarbeiter anlegen" [open]=false>
   <div content>
     <div class="container">
       <div class="row">
         <div style="display: flex">
-          <div style="width: fit-content;">
-            <h5>Vorname</h5>
-            <br/>
-
-            <h5>Nachname</h5>
-            <br/>
-
-            <h5>Straße</h5>
-            <br/>
-          </div>
-
-          <div style="width: 15px"></div>
-
-          <div style="width: 100%">
-            <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
-            <br/>
-
-            <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
-            <br/>
-
-            <input type="text" class="form-control" placeholder="Vorname" aria-label="Vorname">
-            <br/>
-          </div>
+          <table>
+            <tr>
+              <td>Vorname</td>
+              <td><input text=""/></td>
+            </tr>
+            <tr>
+              <td>Nachname</td>
+              <td><input text=""/></td>
+            </tr>
+            <tr>
+              <td>Straße</td>
+              <td><input text=""/></td>
+            </tr>
+            <tr>
+              <td>PLZ</td>
+              <td><input text=""/></td>
+            </tr>
+            <tr>
+              <td>Ort</td>
+              <td><input text=""/></td>
+            </tr>
+            <tr>
+              <td>Tel. Nr.</td>
+              <td><input text=""/></td>
+            </tr>
+          </table>
         </div>
       </div>      
     </div>
