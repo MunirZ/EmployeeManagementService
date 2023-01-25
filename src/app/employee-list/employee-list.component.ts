@@ -41,30 +41,6 @@ export class EmployeeListComponent {
   }
 
 
-  onInputChange(event: any) {
-    var input = event.target.value;
-    if (input == "#") {
-      console.log("test");
-    }
-    else {
-      var regex = new RegExp("^" + input);
-      var filtered = this.employees$2.filter(obj => obj.firstName && regex.test(obj.firstName)
-        || obj.lastName && regex.test(obj.lastName)
-        || obj.city && regex.test(obj.city)
-        || obj.id && regex.test(obj.id.toString())
-        || obj.phone && regex.test(obj.phone)
-        || obj.postcode && regex.test(obj.postcode)
-        || obj.street && regex.test(obj.street));
-      this.employees$ = filtered;
-      console.log(filtered);
-    }
-
-  }
-
-
-
-
-
 
   AddEmployees(): void {
     this.employees$.push(new Employee(1, "Munir", "Stinkt", "asdwa", "12345", "Ha", "12389051"));
