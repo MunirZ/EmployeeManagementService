@@ -21,19 +21,20 @@ export class EmployeeListComponent {
   bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzI3NjgxMDgsImlhdCI6MTY3Mjc2NDUwOCwianRpIjoiNGIyYmIwYjMtOTFiZS00MGRjLTkyMjQtNmMxY2ZlYzJiZTc2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIxN2I4MmNlYi1mZDQ3LTQzYjAtODBlYy0xNTRlYzk5N2VhNDMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.RwEfHQDiwzTXlvSma4HnRLMWpYORppIdugZFpJ1RpGIvT-xvY2vc6HlMjsIs36euYCMTZOd51x1Y8EJATEfzXiYNtef980DGlIbnX_vhLirA08FVJnkDSHt1YHfEjhYOMOY9DrsuIFkim80NaPPb1aNVFQ1PNNw_CZ7TLsnrPoO0oXCqKMH2tLUo-SgTablRsK30qJ4HzP58AHkmr0fyqSbwbu1il73ngxJ4JCfKgtYm8-F8O2KbHECOom9Q5O5ZSYPDKCNiVylbzrtdHGFpmOvgq5ZURIQk9qDexKcaEEoOr8YiIjDbqh1zNF-OpIeN8PnU2WFyU3XuaTQihjZDbg';
   //employees$: Observable<Employee[]> = {};
 
+
+  // Main-List
   employees$: Employee[] = [
     new Employee(0, "atierbeiner", "Ben", "Grenzweg 1", "27798", "Hude", "01627684681"),
     new Employee(1, "Stierbeiner", "Ben", "Arenzweg 1", "27798", "HRde", "01627684682"),
     new Employee(2, "ctierbeiner", "Ban", "GWenzweg 1", "27798", "Hude", "01627684683"),
-    new Employee(3, "Stierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680")
+    new Employee(3, "Atierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680"),
+    new Employee(3, "Btierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680"),
+    new Employee(3, "stierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680"),
+    new Employee(3, "stierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680")
   ];
 
-  employees$2: Employee[] = [
-    new Employee(0, "atierbeiner", "Ben", "Grenzweg 1", "27798", "Hude", "01627684681"),
-    new Employee(1, "Stierbeiner", "Ben", "Arenzweg 1", "27798", "HRde", "01627684682"),
-    new Employee(2, "ctierbeiner", "Ban", "GWenzweg 1", "27798", "Hude", "01627684683"),
-    new Employee(3, "Stierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680")
-  ];
+  // Revised-List 
+  employees$2: Employee[] = this.employees$;
 
   constructor(private http: HttpClient) {
     //this.employees$ = of([]);
@@ -61,10 +62,43 @@ export class EmployeeListComponent {
         || obj.postcode && regex.test(obj.postcode)
         || obj.street && regex.test(obj.street));
       this.employees$ = filtered;
-      console.log(filtered);
     }
 
   }
+
+
+  sortEmployeesLastnameAZ(): void {
+    this.employees$.sort((a, b) => {
+      if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return -1; }
+      if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return 1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesLastnameZA(): void {
+    this.employees$.sort((a, b) => {
+      if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return 1; }
+      if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return -1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesfirstnameAZ(): void {
+    this.employees$.sort((a, b) => {
+      if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return -1; }
+      if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return 1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesfirstnameZA(): void {
+    this.employees$.sort((a, b) => {
+      if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return 1; }
+      if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return -1; }
+      return 0;
+    });
+  }
+
 
   /*
   fetchData() {
