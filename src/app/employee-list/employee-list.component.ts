@@ -12,7 +12,7 @@ import { PopupComponent } from 'app/popup/popup.component';
 export class EmployeeListComponent {
 
   isDropDownOpen: boolean = false;
-  isIDClicked: boolean = false;
+  isIDClicked: boolean = true;
   isPrenameClicked: boolean = false;
   isLastnameClicked: boolean = false;
   isTelefonClicked: boolean = false;
@@ -116,6 +116,7 @@ export class EmployeeListComponent {
         || obj.id && regex.test(obj.id.toString())
         || obj.phone && regex.test(obj.phone)
         || obj.postcode && regex.test(obj.postcode)
+        || obj.firstName && obj.lastName && regex.test(obj.firstName + " " + obj.lastName)
         || obj.street && regex.test(obj.street));
       this.employees$ = filtered;
     }
@@ -139,7 +140,7 @@ export class EmployeeListComponent {
     });
   }
 
-  sortEmployeesfirstnameAZ(): void {
+  sortEmployeesFirstnameAZ(): void {
     this.employees$.sort((a, b) => {
       if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return -1; }
       if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return 1; }
@@ -147,10 +148,42 @@ export class EmployeeListComponent {
     });
   }
 
-  sortEmployeesfirstnameZA(): void {
+  sortEmployeesFirstnameZA(): void {
     this.employees$.sort((a, b) => {
       if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return 1; }
       if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return -1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesPostcodeUp(): void {
+    this.employees$.sort((a, b) => {
+      if (a.postcode && b.postcode && a.postcode < b.postcode) { return -1; }
+      if (a.postcode && b.postcode && a.postcode > b.postcode) { return 1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesPostcodeDown(): void {
+    this.employees$.sort((a, b) => {
+      if (a.postcode && b.postcode && a.postcode < b.postcode) { return 1; }
+      if (a.postcode && b.postcode && a.postcode > b.postcode) { return -1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesLocationAZ(): void {
+    this.employees$.sort((a, b) => {
+      if (a.city && b.city && a.city < b.city) { return 1; }
+      if (a.city && b.city && a.city > b.city) { return -1; }
+      return 0;
+    });
+  }
+
+  sortEmployeesLocationZA(): void {
+    this.employees$.sort((a, b) => {
+      if (a.city && b.city && a.city < b.city) { return -1; }
+      if (a.city && b.city && a.city > b.city) { return 1; }
       return 0;
     });
   }

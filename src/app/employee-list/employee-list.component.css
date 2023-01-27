@@ -4,11 +4,15 @@
     border-radius: 8px;
 }
 
-.table > tr {
+th {
+    color: white;
+}
+
+.table>tr {
     background-color: grey;
 }
 
-.table > tr:hover {
+.table>tr:hover {
     background-color: rgb(148, 148, 148);
 }
 
@@ -25,7 +29,8 @@
 .popup-form {
     width: 100%;
 }
-.popup-form > tr {
+
+.popup-form>tr {
     height: 40px;
 }
 
@@ -38,9 +43,10 @@
     width: 100%;
 }
 
-.popup-form-field-input > div {
+.popup-form-field-input>div {
     margin-left: 20px;
 }
-.popup-form-field-input > div > input {
+
+.popup-form-field-input>div>input {
     width: 100%;
 }
