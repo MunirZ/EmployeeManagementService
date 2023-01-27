@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { Employee } from "../Employee";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -19,7 +19,7 @@ export class EmployeeListComponent {
   isAddressClicked: boolean = false;
 
   bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzI3NjgxMDgsImlhdCI6MTY3Mjc2NDUwOCwianRpIjoiNGIyYmIwYjMtOTFiZS00MGRjLTkyMjQtNmMxY2ZlYzJiZTc2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIxN2I4MmNlYi1mZDQ3LTQzYjAtODBlYy0xNTRlYzk5N2VhNDMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.RwEfHQDiwzTXlvSma4HnRLMWpYORppIdugZFpJ1RpGIvT-xvY2vc6HlMjsIs36euYCMTZOd51x1Y8EJATEfzXiYNtef980DGlIbnX_vhLirA08FVJnkDSHt1YHfEjhYOMOY9DrsuIFkim80NaPPb1aNVFQ1PNNw_CZ7TLsnrPoO0oXCqKMH2tLUo-SgTablRsK30qJ4HzP58AHkmr0fyqSbwbu1il73ngxJ4JCfKgtYm8-F8O2KbHECOom9Q5O5ZSYPDKCNiVylbzrtdHGFpmOvgq5ZURIQk9qDexKcaEEoOr8YiIjDbqh1zNF-OpIeN8PnU2WFyU3XuaTQihjZDbg';
-  //employees$: Observable<Employee[]> = {};
+  employeesDB$: Observable<Employee[]>;
 
 
   // Main-List
@@ -37,14 +37,70 @@ export class EmployeeListComponent {
   employees$2: Employee[] = this.employees$;
 
   constructor(private http: HttpClient) {
-    //this.employees$ = of([]);
-    //this.fetchData();
+    this.employeesDB$ = of([]);
+    this.addEmployee();
+    this.fetchData();
   }
 
+  @ViewChild("employeePopup") employeePopup!: PopupComponent;
+  @ViewChild("employeeFirstname") employeeFirstname!: ElementRef;
+  @ViewChild("employeeLastname") employeeLastname!: ElementRef;
+  @ViewChild("employeeStreet") employeeStreet!: ElementRef;
+  @ViewChild("employeePostcode") employeePostcode!: ElementRef;
+  @ViewChild("employeeCity") employeeCity!: ElementRef;
+  @ViewChild("employeePhone") employeePhone!: ElementRef;
+  createEmployeeFirstname: string = "";
+  createEmployeeLastname: string = "";
+  createEmployeeStreet: string = "";
+  createEmployeePostcode: string = "";
+  createEmployeeCity: string = "";
+  createEmployeePhone: string = "";
 
+  editEmployeePopup(e: any) {
+    if (!this.employeePopup.edit) {
+      this.createEmployeeFirstname = this.employeeFirstname.nativeElement.value;
+      this.createEmployeeLastname = this.employeeLastname.nativeElement.value;
+      this.createEmployeeStreet = this.employeeStreet.nativeElement.value;
+      this.createEmployeePostcode = this.employeePostcode.nativeElement.value;
+      this.createEmployeeCity = this.employeeCity.nativeElement.value;
+      this.createEmployeePhone = this.employeePhone.nativeElement.value;
+    }
 
-  AddEmployees(): void {
-    this.employees$.push(new Employee(1, "Munir", "Stinkt", "asdwa", "12345", "Ha", "12389051"));
+    this.employeeFirstname.nativeElement.value = e.firstName;
+    this.employeeLastname.nativeElement.value = e.lastName;
+    this.employeeStreet.nativeElement.value = e.street;
+    this.employeePostcode.nativeElement.value = e.postcode;
+    this.employeeCity.nativeElement.value = e.city;
+    this.employeePhone.nativeElement.value = e.phone;
+    this.employeePopup.edit = true;
+    this.employeePopup.open = true;
+  }
+
+  createEmployeePopup() {
+    if (this.employeePopup.edit) {
+      this.employeeFirstname.nativeElement.value = this.createEmployeeFirstname;
+      this.employeeLastname.nativeElement.value = this.createEmployeeLastname;
+      this.employeeStreet.nativeElement.value = this.createEmployeeStreet;
+      this.employeePostcode.nativeElement.value = this.createEmployeePostcode;
+      this.employeeCity.nativeElement.value = this.createEmployeeCity;
+      this.employeePhone.nativeElement.value = this.createEmployeePhone;
+      this.employeePopup.edit = false;
+    }
+
+    this.employeePopup.open = true;
+  }
+
+  createEmployee(): void {
+    this.createEmployeeFirstname = "";
+    this.createEmployeeLastname = "";
+    this.createEmployeeStreet = "";
+    this.createEmployeePostcode = "";
+    this.createEmployeeCity = "";
+    this.createEmployeePhone = "";
+
+    this.employeePopup.open = false;
+
+    this.employees$.push(new Employee(1, this.employeeFirstname.nativeElement.value, this.employeeLastname.nativeElement.value, this.employeeStreet.nativeElement.value, this.employeePostcode.nativeElement.value, this.employeeCity.nativeElement.value, this.employeePhone.nativeElement.value));
   }
 
   onInputChange(event: any) {
@@ -99,14 +155,32 @@ export class EmployeeListComponent {
     });
   }
 
-
-  /*
   fetchData() {
-    this.employees$ = this.http.get<Employee[]>('/backend', {
+    this.employeesDB$ = this.http.get<Employee[]>('http://localhost:8089/backend', {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
     });
+    console.log(this.employeesDB$);
   }
-  */
+
+  addEmployee() {
+    const body = {
+      "lastName": "Freddy",
+      "firstName": "Krueger",
+      "street": "nightmare on elm street ",
+      "postcode": "00000",
+      "city": "Arkham",
+      "phone": "932849233"
+    }
+
+    this.http.put<any>('http://localhost:8089/backend', body, {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${this.bearer}`)
+    }).subscribe(data => {
+      console.log(data)
+    });
+  }
 }
+
