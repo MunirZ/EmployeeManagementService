@@ -88,13 +88,13 @@ export class EmployeeListComponent {
     this.createEmployeeStreet = "";
     this.createEmployeePostcode = "";
     this.createEmployeeCity = "";
-    this.createEmployeePhone = "";
+    this.createEmployeePhone = ""; 
 
     this.employeePopup.open = false;
 
     const body = {
-        "lastName": this.employeeFirstname.nativeElement.value,
-        "firstName": this.employeeLastname.nativeElement.value,
+        "firstName": this.employeeFirstname.nativeElement.value,
+        "lastName": this.employeeLastname.nativeElement.value,
         "street": this.employeeStreet.nativeElement.value,
         "postcode": this.employeePostcode.nativeElement.value,
         "city": this.employeeCity.nativeElement.value,
@@ -128,15 +128,13 @@ export class EmployeeListComponent {
 
     this.employeePopup.open = false;
 
-    if (this.employeePopup.edit) {
-      this.http.put<Employee>('/backend/'+this.editEmployeeID, body, head).subscribe(data => {
-        this.fetchData();
-      });
-    } else {
-      this.http.post<Employee>('/backend', body, head).subscribe(data => {
-        this.fetchData();
-      });
-    }
+    this.http.delete<Employee>('/backend/'+this.editEmployeeID, {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${this.bearer}`)
+    }).subscribe(data => {
+      this.fetchData();
+    });
   }
 
   onInputChange(event: any) {
@@ -258,6 +256,5 @@ export class EmployeeListComponent {
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
     });
-    console.log(this.employees$);
   }
 }
