@@ -18,7 +18,7 @@ export class EmployeeListComponent {
   isTelefonClicked: boolean = false;
   isAddressClicked: boolean = false;
 
-  bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzI3NjgxMDgsImlhdCI6MTY3Mjc2NDUwOCwianRpIjoiNGIyYmIwYjMtOTFiZS00MGRjLTkyMjQtNmMxY2ZlYzJiZTc2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIxN2I4MmNlYi1mZDQ3LTQzYjAtODBlYy0xNTRlYzk5N2VhNDMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.RwEfHQDiwzTXlvSma4HnRLMWpYORppIdugZFpJ1RpGIvT-xvY2vc6HlMjsIs36euYCMTZOd51x1Y8EJATEfzXiYNtef980DGlIbnX_vhLirA08FVJnkDSHt1YHfEjhYOMOY9DrsuIFkim80NaPPb1aNVFQ1PNNw_CZ7TLsnrPoO0oXCqKMH2tLUo-SgTablRsK30qJ4HzP58AHkmr0fyqSbwbu1il73ngxJ4JCfKgtYm8-F8O2KbHECOom9Q5O5ZSYPDKCNiVylbzrtdHGFpmOvgq5ZURIQk9qDexKcaEEoOr8YiIjDbqh1zNF-OpIeN8PnU2WFyU3XuaTQihjZDbg';
+  bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzUyNDA4NDEsImlhdCI6MTY3NTIzNzI0MSwianRpIjoiMzcxMDllZTEtYmZkMS00NWViLWE4NWItODRlNzM4MTM2NmM2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiJhNzJlMTNjNS1jYjZjLTRkZGQtYmI4Yy1iNGRjZjAzMDM3YTMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.V7I_CIbeiXQ0NTC9JZApFOlBx7ZYjBmwGc7FkOUpepIkw_ZOnzXP5WBoWP4oI80q_nOQWPOLXrpi56LzHyodf6eLoUr7-tWL0iROZlOC5R28mkJ2boGSxTykomR9PRsrswxGxmv0a41S9wiOORj9-Auf3S9gaAlvJ7Bt8Y9phkBeK2PwNGeAGAZZT9urFNQDWguleLZTsdyAKTW9tvuFqNl1K-4A4Tkt9XKaBBgGTGvJr0s7pMQHrYK2oN9jFvV1zBVW03ovA_ns7dsG68EmyVHZIL_i871piFH53bdu55j5scAaxp3JGjWTjajcHeBquwFXMGI1gPBVox66umD1Mg';
   employeesDB$: Observable<Employee[]>;
 
 
@@ -38,7 +38,7 @@ export class EmployeeListComponent {
 
   constructor(private http: HttpClient) {
     this.employeesDB$ = of([]);
-    this.addEmployee();
+    // this.addEmployee();
     this.fetchData();
   }
 
@@ -189,7 +189,7 @@ export class EmployeeListComponent {
   }
 
   fetchData() {
-    this.employeesDB$ = this.http.get<Employee[]>('http://localhost:8089/backend', {
+    this.employeesDB$ = this.http.get<Employee[]>('/backend', {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
@@ -199,15 +199,15 @@ export class EmployeeListComponent {
 
   addEmployee() {
     const body = {
-      "lastName": "Freddy",
-      "firstName": "Krueger",
-      "street": "nightmare on elm street ",
+      "lastName": "Ben",
+      "firstName": "Stinkt",
+      "street": "nightmare",
       "postcode": "00000",
       "city": "Arkham",
       "phone": "932849233"
     }
 
-    this.http.put<any>('http://localhost:8089/backend', body, {
+    this.http.post<Employee>('/backend', body, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
