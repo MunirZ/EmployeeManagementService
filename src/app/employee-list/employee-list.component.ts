@@ -19,7 +19,7 @@ export class EmployeeListComponent {
   isAddressClicked: boolean = false;
 
   bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzUyNDA4NDEsImlhdCI6MTY3NTIzNzI0MSwianRpIjoiMzcxMDllZTEtYmZkMS00NWViLWE4NWItODRlNzM4MTM2NmM2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiJhNzJlMTNjNS1jYjZjLTRkZGQtYmI4Yy1iNGRjZjAzMDM3YTMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.V7I_CIbeiXQ0NTC9JZApFOlBx7ZYjBmwGc7FkOUpepIkw_ZOnzXP5WBoWP4oI80q_nOQWPOLXrpi56LzHyodf6eLoUr7-tWL0iROZlOC5R28mkJ2boGSxTykomR9PRsrswxGxmv0a41S9wiOORj9-Auf3S9gaAlvJ7Bt8Y9phkBeK2PwNGeAGAZZT9urFNQDWguleLZTsdyAKTW9tvuFqNl1K-4A4Tkt9XKaBBgGTGvJr0s7pMQHrYK2oN9jFvV1zBVW03ovA_ns7dsG68EmyVHZIL_i871piFH53bdu55j5scAaxp3JGjWTjajcHeBquwFXMGI1gPBVox66umD1Mg';
-  employeesDB$: Observable<Employee[]>;
+  employeesDB$: Observable<Employee[]> = of([]);
 
 
   // Main-List
@@ -55,6 +55,7 @@ export class EmployeeListComponent {
   createEmployeePostcode: string = "";
   createEmployeeCity: string = "";
   createEmployeePhone: string = "";
+  editEmployeeID: string = "";
 
   editEmployeePopup(e: any) {
     if (!this.employeePopup.edit) {
@@ -65,6 +66,7 @@ export class EmployeeListComponent {
       this.createEmployeeCity = this.employeeCity.nativeElement.value;
       this.createEmployeePhone = this.employeePhone.nativeElement.value;
     }
+    this.editEmployeeID = e.id;
 
     this.employeeFirstname.nativeElement.value = e.firstName;
     this.employeeLastname.nativeElement.value = e.lastName;
@@ -100,16 +102,43 @@ export class EmployeeListComponent {
 
     this.employeePopup.open = false;
 
-    this.employees$.push(new Employee(1, this.employeeFirstname.nativeElement.value, this.employeeLastname.nativeElement.value, this.employeeStreet.nativeElement.value, this.employeePostcode.nativeElement.value, this.employeeCity.nativeElement.value, this.employeePhone.nativeElement.value));
+    const body = {
+        "lastName": this.employeeFirstname.nativeElement.value,
+        "firstName": this.employeeLastname.nativeElement.value,
+        "street": this.employeeStreet.nativeElement.value,
+        "postcode": this.employeePostcode.nativeElement.value,
+        "city": this.employeeCity.nativeElement.value,
+        "phone": this.employeePhone.nativeElement.value,
+        "skillSet": [
+          "string"
+        ]
+    }
+
+    const head = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${this.bearer}`)
+    }
+
+    if (this.employeePopup.edit) {
+      this.http.put<Employee>('/backend/'+this.editEmployeeID, body, head).subscribe(data => {
+        this.fetchData();
+      });
+    } else {
+      this.http.post<Employee>('/backend', body, head).subscribe(data => {
+        this.fetchData();
+      });
+    }
   }
 
   onInputChange(event: any) {
     var input = event.target.value;
-    if (input == "#") {
-      console.log("test");
-    }
-    else {
+
       var regex = new RegExp("^" + input);
+
+
+      // this.emmployees$2.subscribe(employees => {})
+
       var filtered = this.employees$2.filter(obj => obj.firstName && regex.test(obj.firstName)
         || obj.lastName && regex.test(obj.lastName)
         || obj.city && regex.test(obj.city)
@@ -118,11 +147,8 @@ export class EmployeeListComponent {
         || obj.postcode && regex.test(obj.postcode)
         || obj.firstName && obj.lastName && regex.test(obj.firstName + " " + obj.lastName)
         || obj.street && regex.test(obj.street));
-      this.employees$ = filtered;
-    }
-
+      this.employees$2 = filtered;
   }
-
 
   sortEmployeesLastnameAZ(): void {
     this.employees$.sort((a, b) => {
@@ -196,24 +222,4 @@ export class EmployeeListComponent {
     });
     console.log(this.employeesDB$);
   }
-
-  addEmployee() {
-    const body = {
-      "lastName": "Ben",
-      "firstName": "Stinkt",
-      "street": "nightmare",
-      "postcode": "00000",
-      "city": "Arkham",
-      "phone": "932849233"
-    }
-
-    this.http.post<Employee>('/backend', body, {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        .set('Authorization', `Bearer ${this.bearer}`)
-    }).subscribe(data => {
-      console.log(data)
-    });
-  }
 }
-

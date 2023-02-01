@@ -4,9 +4,7 @@
       <p class="h1">Alle Mitarbeiter</p>
     </div>
   </div>
-  <button (click)="addEmployee()">Create</button>
-
-
+  
   <div class="row align-items-center"> <!--justify-content-end-->
     <div class="col">
       <input type="text" class="form-control" placeholder="Suche (Nur ein Begriff)" (input)="onInputChange($event)">
@@ -146,7 +144,6 @@
     </table>
   </div>
 
-
   <app-popup #employeePopup [title]="employeePopup.edit ? 'Mitarbeiter verwalten' :  'Mitarbeiter anlegen'"
     [open]=false>
     <div content>
@@ -199,7 +196,7 @@
                       <a class="btn btn-primary" style="margin-left: 10px">Löschen</a>
                     </span>
                     <span *ngIf="!employeePopup.edit">
-                      <a class="btn btn-primary">Anlegen</a>
+                      <a class="btn btn-primary" (click)="createEmployee()">Anlegen</a>
                     </span>
                   </div>
                 <td>

@@ -8,6 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { LoginComponent } from './login/login.component';
 import { PopupComponent } from './popup/popup.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { APP_INITIALIZER } from '@angular/core';
+
+import { initializeKeycloak } from '../app/utility/app.init';
 
 @NgModule({
   declarations: [
@@ -20,9 +24,17 @@ import { PopupComponent } from './popup/popup.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    KeycloakAngularModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
