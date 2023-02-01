@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Observable, of } from "rxjs";
+import { Observable, of, map } from "rxjs";
 import { Employee } from "../Employee";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { PopupComponent } from 'app/popup/popup.component';
@@ -19,25 +19,15 @@ export class EmployeeListComponent {
   isAddressClicked: boolean = false;
 
   bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzUyNDA4NDEsImlhdCI6MTY3NTIzNzI0MSwianRpIjoiMzcxMDllZTEtYmZkMS00NWViLWE4NWItODRlNzM4MTM2NmM2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiJhNzJlMTNjNS1jYjZjLTRkZGQtYmI4Yy1iNGRjZjAzMDM3YTMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.V7I_CIbeiXQ0NTC9JZApFOlBx7ZYjBmwGc7FkOUpepIkw_ZOnzXP5WBoWP4oI80q_nOQWPOLXrpi56LzHyodf6eLoUr7-tWL0iROZlOC5R28mkJ2boGSxTykomR9PRsrswxGxmv0a41S9wiOORj9-Auf3S9gaAlvJ7Bt8Y9phkBeK2PwNGeAGAZZT9urFNQDWguleLZTsdyAKTW9tvuFqNl1K-4A4Tkt9XKaBBgGTGvJr0s7pMQHrYK2oN9jFvV1zBVW03ovA_ns7dsG68EmyVHZIL_i871piFH53bdu55j5scAaxp3JGjWTjajcHeBquwFXMGI1gPBVox66umD1Mg';
-  employeesDB$: Observable<Employee[]> = of([]);
-
-
+ 
   // Main-List
-  employees$: Employee[] = [
-    new Employee(0, "atierbeiner", "Ben", "Grenzweg 1", "27798", "Hude", "01627684681"),
-    new Employee(1, "Stierbeiner", "Ben", "Arenzweg 1", "27798", "HRde", "01627684682"),
-    new Employee(2, "ctierbeiner", "Ban", "GWenzweg 1", "27798", "Hude", "01627684683"),
-    new Employee(3, "Atierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680"),
-    new Employee(3, "Btierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680"),
-    new Employee(3, "stierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680"),
-    new Employee(3, "stierbeiner", "Munir", "Rrenzweg 1", "27799", "Hude", "01627684680")
-  ];
+  employees$: Observable<Employee[]> = of([]);
 
   // Revised-List 
-  employees$2: Employee[] = this.employees$;
+  employees$2: Observable<Employee[]> = this.employees$;
 
   constructor(private http: HttpClient) {
-    this.employeesDB$ = of([]);
+    this.employees$ = of([]);
     // this.addEmployee();
     this.fetchData();
   }
@@ -109,9 +99,6 @@ export class EmployeeListComponent {
         "postcode": this.employeePostcode.nativeElement.value,
         "city": this.employeeCity.nativeElement.value,
         "phone": this.employeePhone.nativeElement.value,
-        "skillSet": [
-          "string"
-        ]
     }
 
     const head = {
@@ -130,6 +117,27 @@ export class EmployeeListComponent {
       });
     }
   }
+  
+  deleteEmployee(): void {
+    this.createEmployeeFirstname = "";
+    this.createEmployeeLastname = "";
+    this.createEmployeeStreet = "";
+    this.createEmployeePostcode = "";
+    this.createEmployeeCity = "";
+    this.createEmployeePhone = "";
+
+    this.employeePopup.open = false;
+
+    if (this.employeePopup.edit) {
+      this.http.put<Employee>('/backend/'+this.editEmployeeID, body, head).subscribe(data => {
+        this.fetchData();
+      });
+    } else {
+      this.http.post<Employee>('/backend', body, head).subscribe(data => {
+        this.fetchData();
+      });
+    }
+  }
 
   onInputChange(event: any) {
     var input = event.target.value;
@@ -137,9 +145,8 @@ export class EmployeeListComponent {
       var regex = new RegExp("^" + input);
 
 
-      // this.emmployees$2.subscribe(employees => {})
-
-      var filtered = this.employees$2.filter(obj => obj.firstName && regex.test(obj.firstName)
+      this.employees$2.subscribe(employees => {
+        const filtered = employees.filter(obj => obj.firstName && regex.test(obj.firstName)
         || obj.lastName && regex.test(obj.lastName)
         || obj.city && regex.test(obj.city)
         || obj.id && regex.test(obj.id.toString())
@@ -147,79 +154,110 @@ export class EmployeeListComponent {
         || obj.postcode && regex.test(obj.postcode)
         || obj.firstName && obj.lastName && regex.test(obj.firstName + " " + obj.lastName)
         || obj.street && regex.test(obj.street));
-      this.employees$2 = filtered;
+        
+        this.employees$2 = of(filtered);
+      })
+
+      // var filtered = this.employees$2.filter(obj => obj.firstName && regex.test(obj.firstName)
+      //   || obj.lastName && regex.test(obj.lastName)
+      //   || obj.city && regex.test(obj.city)
+      //   || obj.id && regex.test(obj.id.toString())
+      //   || obj.phone && regex.test(obj.phone)
+      //   || obj.postcode && regex.test(obj.postcode)
+      //   || obj.firstName && obj.lastName && regex.test(obj.firstName + " " + obj.lastName)
+      //   || obj.street && regex.test(obj.street));
+      // this.employees$2 = filtered;
   }
 
   sortEmployeesLastnameAZ(): void {
-    this.employees$.sort((a, b) => {
-      if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return -1; }
-      if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return 1; }
-      return 0;
-    });
+
+    this.employees$.pipe(
+      map(employees => employees.sort((a, b) => {
+        if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return -1; }
+        if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return 1; }
+        return 0;
+      }))
+    ).subscribe(sortedEmployees => this.employees$ = of(sortedEmployees));
+
+    // this.employees$.sort((a, b) => {
+    //   if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return -1; }
+    //   if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return 1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesLastnameZA(): void {
-    this.employees$.sort((a, b) => {
-      if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return 1; }
-      if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return -1; }
-      return 0;
-    });
+
+    this.employees$.pipe(
+      map(employees => employees.sort((a, b) => {
+        if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return 1; }
+        if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return -1; }
+        return 0;
+      }))
+    ).subscribe(sortedEmployees => this.employees$ = of(sortedEmployees));
+
+
+    // this.employees$.sort((a, b) => {
+    //   if (a.lastName && b.lastName && a.lastName.toLowerCase() < b.lastName.toLowerCase()) { return 1; }
+    //   if (a.lastName && b.lastName && a.lastName.toLowerCase() > b.lastName.toLowerCase()) { return -1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesFirstnameAZ(): void {
-    this.employees$.sort((a, b) => {
-      if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return -1; }
-      if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return 1; }
-      return 0;
-    });
+    // this.employees$.sort((a, b) => {
+    //   if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return -1; }
+    //   if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return 1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesFirstnameZA(): void {
-    this.employees$.sort((a, b) => {
-      if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return 1; }
-      if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return -1; }
-      return 0;
-    });
+    // this.employees$.sort((a, b) => {
+    //   if (a.firstName && b.firstName && a.firstName.toLowerCase() < b.firstName.toLowerCase()) { return 1; }
+    //   if (a.firstName && b.firstName && a.firstName.toLowerCase() > b.firstName.toLowerCase()) { return -1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesPostcodeUp(): void {
-    this.employees$.sort((a, b) => {
-      if (a.postcode && b.postcode && a.postcode < b.postcode) { return -1; }
-      if (a.postcode && b.postcode && a.postcode > b.postcode) { return 1; }
-      return 0;
-    });
+    // this.employees$.sort((a, b) => {
+    //   if (a.postcode && b.postcode && a.postcode < b.postcode) { return -1; }
+    //   if (a.postcode && b.postcode && a.postcode > b.postcode) { return 1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesPostcodeDown(): void {
-    this.employees$.sort((a, b) => {
-      if (a.postcode && b.postcode && a.postcode < b.postcode) { return 1; }
-      if (a.postcode && b.postcode && a.postcode > b.postcode) { return -1; }
-      return 0;
-    });
+    // this.employees$.sort((a, b) => {
+    //   if (a.postcode && b.postcode && a.postcode < b.postcode) { return 1; }
+    //   if (a.postcode && b.postcode && a.postcode > b.postcode) { return -1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesLocationAZ(): void {
-    this.employees$.sort((a, b) => {
-      if (a.city && b.city && a.city < b.city) { return 1; }
-      if (a.city && b.city && a.city > b.city) { return -1; }
-      return 0;
-    });
+    // this.employees$.sort((a, b) => {
+    //   if (a.city && b.city && a.city < b.city) { return 1; }
+    //   if (a.city && b.city && a.city > b.city) { return -1; }
+    //   return 0;
+    // });
   }
 
   sortEmployeesLocationZA(): void {
-    this.employees$.sort((a, b) => {
-      if (a.city && b.city && a.city < b.city) { return -1; }
-      if (a.city && b.city && a.city > b.city) { return 1; }
-      return 0;
-    });
+    // this.employees$.sort((a, b) => {
+    //   if (a.city && b.city && a.city < b.city) { return -1; }
+    //   if (a.city && b.city && a.city > b.city) { return 1; }
+    //   return 0;
+    // });
   }
 
   fetchData() {
-    this.employeesDB$ = this.http.get<Employee[]>('/backend', {
+    this.employees$ = this.http.get<Employee[]>('/backend', {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
     });
-    console.log(this.employeesDB$);
+    console.log(this.employees$);
   }
 }

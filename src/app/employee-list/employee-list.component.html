@@ -132,7 +132,7 @@
         <th [hidden]="isAddressClicked">Postleitzahl</th>
         <th [hidden]="isTelefonClicked">Telefon</th>
       </thead>
-      <tr *ngFor="let e of employees$" style="cursor: pointer" (click)="editEmployeePopup(e)">
+      <tr *ngFor="let e of employees$ | async" style="cursor: pointer" (click)="editEmployeePopup(e)">
         <td [hidden]="isIDClicked"> {{e.id}}</td>
         <td [hidden]="isLastnameClicked"> {{e.lastName}}</td>
         <td [hidden]="isPrenameClicked"> {{e.firstName}}</td>
@@ -193,7 +193,7 @@
                   <div style="margin-top: 10px;">
                     <span *ngIf="employeePopup.edit">
                       <a class="btn btn-primary" (click)="createEmployee()">Ändern</a>
-                      <a class="btn btn-primary" style="margin-left: 10px">Löschen</a>
+                      <a class="btn btn-primary" (click)="deleteEmployee()" style="margin-left: 10px">Löschen</a>
                     </span>
                     <span *ngIf="!employeePopup.edit">
                       <a class="btn btn-primary" (click)="createEmployee()">Anlegen</a>
@@ -207,8 +207,3 @@
       </div>
     </div>
   </app-popup>
-  <ul>
-    <li *ngFor="let e of employeesDB$ | async">
-      {{e.lastName }}, {{e.firstName}}
-    </li>
-  </ul>
