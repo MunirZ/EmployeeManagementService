@@ -12,13 +12,15 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { APP_INITIALIZER } from '@angular/core';
 
 import { initializeKeycloak } from '../app/utility/app.init';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     LoginComponent,
-    PopupComponent
+    PopupComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
