@@ -33,6 +33,8 @@ export class EmployeeListComponent {
   }
 
   @ViewChild("employeePopup") employeePopup!: PopupComponent;
+  @ViewChild("deleteEmployeeConfirmPopup") deleteEmployeeConfirmPopup!: PopupComponent;
+
   @ViewChild("employeeFirstname") employeeFirstname!: ElementRef;
   @ViewChild("employeeLastname") employeeLastname!: ElementRef;
   @ViewChild("employeeStreet") employeeStreet!: ElementRef;
@@ -118,7 +120,18 @@ export class EmployeeListComponent {
     }
   }
 
-  deleteEmployee(): void {
+  deleteEmployeePopup(): void {
+    this.deleteEmployeeConfirmPopup.employeeName = this.createEmployeeFirstname + '' + this.createEmployeeLastname;
+    this.deleteEmployeeConfirmPopup.open = true;
+    this.employeePopup.open = false;
+  }
+
+  deleteEmployeeAbort(): void {
+    this.deleteEmployeeConfirmPopup.open = false;
+    this.employeePopup.open = true;
+  }
+
+  deleteEmployeeAction(): void {
     this.createEmployeeFirstname = "";
     this.createEmployeeLastname = "";
     this.createEmployeeStreet = "";
@@ -126,7 +139,7 @@ export class EmployeeListComponent {
     this.createEmployeeCity = "";
     this.createEmployeePhone = "";
 
-    this.employeePopup.open = false;
+    this.deleteEmployeeConfirmPopup.open = false;
 
     this.http.delete<Employee>('/backend/' + this.editEmployeeID, {
       headers: new HttpHeaders()
@@ -190,8 +203,6 @@ export class EmployeeListComponent {
     this.sortEmployees('city', true);
   }
 
-
-
   private sortEmployees(field: keyof Employee, desc: boolean): void {
 
     this.sortedEmployees.pipe(
@@ -207,8 +218,6 @@ export class EmployeeListComponent {
       }))
     ).subscribe(sortedEmployees => this.sortedEmployees = of(sortedEmployees));
   }
-
-
 
   fetchData() {
     this.employees$ = this.http.get<Employee[]>('/backend', {
