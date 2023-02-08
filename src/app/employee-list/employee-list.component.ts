@@ -23,14 +23,13 @@ export class EmployeeListComponent {
   // Main-List
   employees$: Observable<Employee[]> = of([]);
 
-  // Revised-List 
-  employees$2: Observable<Employee[]> = of([]);
+  // Sorted-List
+  sortedEmployees: Observable<Employee[]> = of([]);
 
   constructor(private http: HttpClient) {
     this.employees$ = of([]);
-    // this.employees$2 = this.employees$
     this.fetchData();
-    this.employees$2 = this.employees$;
+    this.sortedEmployees = this.employees$;
   }
 
   @ViewChild("employeePopup") employeePopup!: PopupComponent;
@@ -143,9 +142,9 @@ export class EmployeeListComponent {
 
     var regex = new RegExp("^" + input);
 
-    this.employees$2 = this.employees$
+    this.sortedEmployees = this.employees$
 
-    this.employees$2.subscribe(employees => {
+    this.sortedEmployees.subscribe(employees => {
       const filtered = employees.filter(obj => obj.firstName && regex.test(obj.firstName)
         || obj.lastName && regex.test(obj.lastName)
         || obj.city && regex.test(obj.city)
@@ -155,7 +154,7 @@ export class EmployeeListComponent {
         || obj.firstName && obj.lastName && regex.test(obj.firstName + " " + obj.lastName)
         || obj.street && regex.test(obj.street));
 
-      this.employees$2 = of(filtered);
+      this.sortedEmployees = of(filtered);
     })
   }
 
@@ -195,7 +194,7 @@ export class EmployeeListComponent {
 
   private sortEmployees(field: keyof Employee, desc: boolean): void {
 
-    this.employees$2.pipe(
+    this.sortedEmployees.pipe(
       map(employees => employees.sort((a, b) => {
 
         const valueA = a ? a[field] : undefined;
@@ -206,7 +205,7 @@ export class EmployeeListComponent {
 
         return 0;
       }))
-    ).subscribe(sortedEmployees => this.employees$2 = of(sortedEmployees));
+    ).subscribe(sortedEmployees => this.sortedEmployees = of(sortedEmployees));
   }
 
 
@@ -217,5 +216,6 @@ export class EmployeeListComponent {
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
     });
+    this.sortedEmployees = this.employees$;
   }
 }
