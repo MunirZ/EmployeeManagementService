@@ -1,1 +1,14 @@
 <router-outlet></router-outlet>
+
+<app-popup #errorPopup [title]="'Es ist ein Fehler aufgetreten'" [open]="false">
+    <div content>
+        <div class="container">
+            <div class="row">
+                <p>Fehler-Code: {{ errorPopup.errorCode }}</p>
+            </div>
+            <div class="row">
+                <a class="btn btn-primary" (click)="errorPopup.open = false;" style="max-width: 75px;">Ok</a>
+            </div>
+        </div>
+    </div>
+</app-popup>

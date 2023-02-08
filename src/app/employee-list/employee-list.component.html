@@ -136,67 +136,85 @@
       </tr>
     </table>
   </div>
+</div>
 
-  <app-popup #employeePopup [title]="employeePopup.edit ? 'Mitarbeiter verwalten' :  'Mitarbeiter anlegen'"
-    [open]=false>
-    <div content>
-      <div class="container">
-        <div class="row">
-          <div style="display: flex">
-            <table class="popup-form">
-              <tr>
-                <td class="popup-form-field-name">Vorname</td>
-                <td class="popup-form-field-input">
-                  <div><input #employeeFirstname /></div>
-                <td>
-              </tr>
-              <tr>
-                <td class="popup-form-field-name">Nachname</td>
-                <td class="popup-form-field-input">
-                  <div><input #employeeLastname /></div>
-                <td>
-              </tr>
-              <tr>
-                <td class="popup-form-field-name">Straße</td>
-                <td class="popup-form-field-input">
-                  <div><input #employeeStreet /></div>
-                <td>
-              </tr>
-              <tr>
-                <td class="popup-form-field-name">PLZ</td>
-                <td class="popup-form-field-input">
-                  <div><input #employeePostcode /></div>
-                <td>
-              </tr>
-              <tr>
-                <td class="popup-form-field-name">Ort</td>
-                <td class="popup-form-field-input">
-                  <div><input #employeeCity /></div>
-                <td>
-              </tr>
-              <tr>
-                <td class="popup-form-field-name">Tel. Nr.</td>
-                <td class="popup-form-field-input">
-                  <div><input #employeePhone /></div>
-                <td>
-              </tr>
-              <tr>
-                <td class="popup-form-field-name"></td>
-                <td class="popup-form-field-input">
-                  <div style="margin-top: 10px;">
-                    <span *ngIf="employeePopup.edit">
-                      <a class="btn btn-primary" (click)="createEmployee()">Ändern</a>
-                      <a class="btn btn-primary" (click)="deleteEmployee()" style="margin-left: 10px">Löschen</a>
-                    </span>
-                    <span *ngIf="!employeePopup.edit">
-                      <a class="btn btn-primary" (click)="createEmployee()">Anlegen</a>
-                    </span>
-                  </div>
-                <td>
-              </tr>
-            </table>
-          </div>
+<app-popup #employeePopup [title]="employeePopup.edit ? 'Mitarbeiter verwalten' :  'Mitarbeiter anlegen'" [open]=false>
+  <div content>
+    <div class="container">
+      <div class="row">
+        <div style="display: flex">
+          <table class="popup-form">
+            <tr>
+              <td class="popup-form-field-name">Vorname</td>
+              <td class="popup-form-field-input">
+                <div><input #employeeFirstname /></div>
+              <td>
+            </tr>
+            <tr>
+              <td class="popup-form-field-name">Nachname</td>
+              <td class="popup-form-field-input">
+                <div><input #employeeLastname /></div>
+              <td>
+            </tr>
+            <tr>
+              <td class="popup-form-field-name">Straße</td>
+              <td class="popup-form-field-input">
+                <div><input #employeeStreet /></div>
+              <td>
+            </tr>
+            <tr>
+              <td class="popup-form-field-name">PLZ</td>
+              <td class="popup-form-field-input">
+                <div><input #employeePostcode /></div>
+              <td>
+            </tr>
+            <tr>
+              <td class="popup-form-field-name">Ort</td>
+              <td class="popup-form-field-input">
+                <div><input #employeeCity /></div>
+              <td>
+            </tr>
+            <tr>
+              <td class="popup-form-field-name">Tel. Nr.</td>
+              <td class="popup-form-field-input">
+                <div><input #employeePhone /></div>
+              <td>
+            </tr>
+            <tr>
+              <td class="popup-form-field-name"></td>
+              <td class="popup-form-field-input">
+                <div style="margin-top: 10px;">
+                  <span *ngIf="employeePopup.edit">
+                    <a class="btn btn-primary" (click)="createEmployee()">Ändern</a>
+                    <a class="btn btn-primary" (click)="deleteEmployeePopup()" style="margin-left: 10px">Löschen</a>
+                  </span>
+                  <span *ngIf="!employeePopup.edit">
+                    <a class="btn btn-primary" (click)="createEmployee()">Anlegen</a>
+                  </span>
+                </div>
+              <td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
-  </app-popup>
+  </div>
+</app-popup>
+
+<app-popup #deleteEmployeeConfirmPopup [title]="'Mitarbeiter löschen'" [open]=false>
+  <div content>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p>Wollen Sie den Mitarbeiter {{ deleteEmployeeConfirmPopup.employeeName }} wirklich löschen?</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <a class="btn btn-primary" style="margin-right: 10px" (click)="deleteEmployeeAction()">Ja</a>
+          <a class="btn btn-primary" (click)="deleteEmployeeAbort()">Nein</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-popup>
