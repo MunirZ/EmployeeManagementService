@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class PopupComponent {
   [key: string]: any;
 
-  @Input() title: string = "Test";
+  @Input() title: string = "Popup";
   @Input() open: boolean = false;
 }
