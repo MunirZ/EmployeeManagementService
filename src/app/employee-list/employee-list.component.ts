@@ -35,6 +35,8 @@ export class EmployeeListComponent {
   @ViewChild("employeePopup") employeePopup!: PopupComponent;
   @ViewChild("deleteEmployeeConfirmPopup") deleteEmployeeConfirmPopup!: PopupComponent;
 
+  @ViewChild("errorPopup") errorPopup!: PopupComponent;
+
   @ViewChild("employeeFirstname") employeeFirstname!: ElementRef;
   @ViewChild("employeeLastname") employeeLastname!: ElementRef;
   @ViewChild("employeeStreet") employeeStreet!: ElementRef;
@@ -112,10 +114,16 @@ export class EmployeeListComponent {
     if (this.employeePopup.edit) {
       this.http.put<Employee>('/backend/' + this.editEmployeeID, body, head).subscribe(data => {
         this.fetchData();
+      }, error => {
+        this.errorPopup.errorCode = error.status + " Fehlerhafteeingabe";
+        this.errorPopup.open = true;
       });
     } else {
       this.http.post<Employee>('/backend', body, head).subscribe(data => {
         this.fetchData();
+      }, error => {
+        this.errorPopup.errorCode = error.status + " Fehlerhafteeingabe";
+        this.errorPopup.open = true;
       });
     }
   }
@@ -147,6 +155,9 @@ export class EmployeeListComponent {
         .set('Authorization', `Bearer ${this.bearer}`)
     }).subscribe(data => {
       this.fetchData();
+    }, error => {
+      this.errorPopup.errorCode = error.status;
+      this.errorPopup.open = true;
     });
   }
 
