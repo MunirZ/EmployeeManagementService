@@ -1,0 +1,17 @@
+### EmployeListComponent
+
+Das EmployeListComponent enthält sämtliche Funktionen zum anfragen, erstellen und verändern von Daten aus der Datenbank. 
+Es stellt sämtliche abgefragte Daten als Liste dar und bietet Popups zum verändern der Daten. 
+
+
+### get_employees
+Gibt alle Mitarbeiter aus der Datenbank aus.
+
+### get_employee_by_id
+Gibt einen Mitarbeiter mithilfe der ID aus der Datenbank aus.
+
+### deleteEmployeeAction
+Löscht Einträge aus der Datenbank.
+
+### createEmployee
+Ändert oder Erstellt je nach Popup einen Mitarbeiter.

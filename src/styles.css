@@ -12,9 +12,9 @@ body {
     --backgroundColor: rgb(32, 33, 36);
     --textColor: rgb(255, 255, 255);
     --buttonRadius: 4px;
-    --buttonColor: rgb(20, 22, 161);
-    --buttonColorHover: rgb(76, 79, 248);
-    --tableColor: rgb(17, 19, 158);;
+    --buttonColor: rgb(41, 61, 93);
+    --buttonColorHover: rgb(83, 114, 163);
+    --tableColor: rgb(41, 61, 93);
 
     --popupCloseColor: rgb(59, 77, 240);
     --popupRadius: 8px;
@@ -30,4 +30,14 @@ body {
 
 .btn-primary:hover {
     background-color: var(--buttonColorHover) !important;
+}
+
+.background-blur {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgb(0, 0, 0, .4);
+    z-index: 1;
+    top: 0;
+    left: 0;
 }

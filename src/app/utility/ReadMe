@@ -1,0 +1,2 @@
+utility ist eine Sammlung an ausgelagerten Funktionen. 
+app.init.ts und app.guard.ts werden für die Anbindung an den KeycloakService verwendet.

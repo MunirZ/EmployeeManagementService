@@ -1,0 +1,2 @@
+Das LoginComponent implementiert eine Login-Seite auf der man sich mit einem Benutzernamen und Passwort anmelden kann.
+Vorerst wurde das Component durch die Keycloak-Anmeldeseite ersetzt.
